@@ -1,0 +1,1 @@
+document.write('<div class="success">It worked!</div>');

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Delayify Test Suite</title>
+</head>
+<body>
+<script type="text/javascript" src="../src/delayify.js"></script>
+<style type="text/css"> 
+* {
+	font-family:Tahoma, Geneva, sans-serif;	
+	font-size:16px;
+}
+table.testsuite {
+	width:800px;
+    border-collapse: collapse;
+}
+
+table.testsuite td, table.testsuite th {
+	border:1px solid #666;
+	padding:6px;
+}
+
+.result {
+	background:#F00;
+	height:36px;
+	width:200px;
+	padding:0 !important;
+}
+
+.success {
+	padding:8px 0;
+	height:20px;
+	width:100%;
+	text-align:center;
+	background:#090;
+	color:#FFF;
+	text-align:center;
+}
+</style> 
+<table class="testsuite"> 
+	<tr> 
+		<th>Test #</th> 
+		<th>Description</th> 
+		<th>Result</th> 
+	</tr> 
+	<tr> 
+		<td>1</td> 
+		<td>Simple document.write</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+			<script type="text/javascript">
+				document.write('<div class="success">It worked!</div>');
+			</script>
+			</textarea> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>2</td> 
+		<td>Simple document.writeln</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+			<script type="text/javascript">
+				document.writeln('<div class="success">It worked!</div>');
+			</script>
+			</textarea> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>3</td> 
+		<td>External script uses simple document.write (Standard include)</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+			<script type="text/javascript" src="scripts/docWriteHtmlOutput.js"></script>
+			</textarea> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>4</td> 
+		<td>Simple HTML content insertion</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+			<div class="success">It worked!</div>
+			</textarea> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>5</td> 
+		<td>Declare variable, use doc.write to include dynamic script</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+			<script type="text/javascript">
+			scriptIncludeUrl = 'scripts/docWriteHtmlOutput.js';
+			</script>
+			<script type="text/javascript">
+			document.write('<script src="' + scriptIncludeUrl + '"><\/scr' + 'ipt>');
+			</script>
+			</textarea> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>6</td> 
+		<td>Function test, capitalized script tags</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+			<SCRIPT TYPE="TEXT/JAVASCRIPT" SRC="scripts/docWriteFunction.js"></SCRIPT>
+			<SCRIPT TYPE="TEXT/JAVASCRIPT">
+				docWriteTest1();
+			</SCRIPT>
+			</textarea> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>7</td> 
+		<td>Nested script include, test proper ordering</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+			<script type="text/javascript" src="scripts/includeDocWriteFunction.js"></script>
+			<script type="text/javascript">
+				docWriteTest2();
+			</script>
+			</textarea> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>8</td> 
+		<td>Multi-part markup doc.write</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+			<script type="text/javascript">
+				document.write('<div class="');
+				document.write('success">It worked!');
+				document.write('<');
+				document.write('/div>');
+			</script>
+			</textarea> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>9</td> 
+		<td>Multi-part doc.write script include</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+			<script type="text/javascript">
+				document.write('<scr');
+				document.write('ipt type="text/java');
+				document.write('script" sr');
+				document.write('c="scripts/docWriteHtmlOutput.js"></scr');
+				document.write('ipt>');
+			</script>
+			</textarea> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>10</td> 
+		<td>Invalid script include, no quotes around src</td> 
+		<td class="result"> 
+			<textarea class="delayify" style="display:none;"> 
+				<script src=scripts/docWriteHtmlOutput.js?v=12345></script> 
+			</textarea> 
+		</td> 
+	</tr>
+</table>
+</body>
+</html>

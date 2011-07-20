@@ -1,0 +1,1 @@
+document.write('<script src="scripts/docWriteFunction2.js"><\/scr' + 'ipt>');
