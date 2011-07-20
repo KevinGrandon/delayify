@@ -4,5 +4,5 @@ Delayify is a simple script that puts control of your website loading back into 
 Our studies have shown that delayify does generally not have a negative impact on revenue due to much higher user retention, faster page loading, and lower bounce rate.
 
 <h2>Using Delayify</h2>
-* Wrap all desired scripts to be delayed inside of a textarea like so: <textarea class="delayify" style="display:none;"> ...  </textarea>
+* Wrap all desired scripts to be delayed inside of a textarea like so: &lt;textarea class="delayify" style="display:none;"&gt; ...  &lt;/textarea&gt;
 * Includee the delayify.min.js script on your page.
